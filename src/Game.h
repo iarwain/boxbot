@@ -24,6 +24,8 @@ private:
     void            OnStopGame();
     void            OnMapLoad();
 
+	orxOBJECT      *mpstCameraObject;
+    orxBOOL         mbQuit;
 };
 
 #endif /* GAME_H_ */

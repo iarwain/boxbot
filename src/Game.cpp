@@ -9,6 +9,8 @@
 
 #include "Game.h"
 
+static  const orxSTRING szConfigCameraObject            = "CameraObject";
+
 void Game::OnStartGame()
 {
 }
@@ -29,6 +31,12 @@ orxSTATUS Game::Init()
 {
   orxSTATUS eResult = orxSTATUS_SUCCESS;
 
+  mbQuit = orxFALSE;
+
+  mpstCameraObject      = orxObject_CreateFromConfig(szConfigCameraObject);
+  // Adds camera as child
+  orxCamera_SetParent(GetMainCamera(), mpstCameraObject);
+
   // Done!
   return eResult;
 }
@@ -36,6 +44,11 @@ orxSTATUS Game::Init()
 orxSTATUS Game::Run()
 {
   orxSTATUS eResult = orxSTATUS_SUCCESS;
+
+  if(mbQuit == orxTRUE)
+  {
+    eResult = orxSTATUS_FAILURE;
+  }
 
   // Done!
   return eResult;
