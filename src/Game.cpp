@@ -37,6 +37,9 @@ orxSTATUS Game::Init()
   // Adds camera as child
   orxCamera_SetParent(GetMainCamera(), mpstCameraObject);
 
+  SetMapName("Level1.map");
+  LoadMap();
+
   // Done!
   return eResult;
 }

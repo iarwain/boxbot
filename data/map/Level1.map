@@ -1,0 +1,107 @@
+[Map]
+CameraPosition = (0, 0, -5)
+CameraZoom = 1.000000
+Differential = false
+LayerNumber = 9
+ObjectNumber = 12
+
+[ScrollEd]
+EncryptSave = false
+LayerIndex = 7
+
+[SO:00000000]
+Name = Cog5
+Position = (-473, -217, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000001]
+Name = Cog2
+Position = (-388, -132, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000002]
+Name = Cog6
+Position = (497, 165, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000003]
+Name = Cog4
+Position = (-321, 179, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000004]
+Name = Cog4
+Position = (165, -205, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000005]
+Name = Cog1
+Position = (50, -187, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000007]
+Name = Cog2
+Position = (249, -122, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000008]
+Name = Cog5
+Position = (-189, 125, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000009]
+Name = Cog1
+Position = (388, 70, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000010]
+Name = Cog2
+Position = (440, -7, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000011]
+Name = Cog3
+Position = (-291, -150, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000012]
+Name = Cog2
+Position = (-404, 97, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
