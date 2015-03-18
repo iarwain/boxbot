@@ -3,11 +3,11 @@ CameraPosition = (0, 0, -5)
 CameraZoom = 1.000000
 Differential = false
 LayerNumber = 9
-ObjectNumber = 12
+ObjectNumber = 24
 
 [ScrollEd]
 EncryptSave = false
-LayerIndex = 7
+LayerIndex = 6
 
 [SO:00000000]
 Name = Cog5
@@ -100,6 +100,102 @@ Tiling = false
 [SO:00000012]
 Name = Cog2
 Position = (-404, 97, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000013]
+Name = PlatformGround
+Position = (-0, 384, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000016]
+Name = Platform2Stand
+Position = (0, 208, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000017]
+Name = Platform2
+Position = (0, 136, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000018]
+Name = Platform1
+Position = (0, -0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000019]
+Name = Platform1
+Position = (136, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000020]
+Name = Platform1
+Position = (-136, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000021]
+Name = Platform2
+Position = (440, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000022]
+Name = Platform2
+Position = (-440, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000023]
+Name = Platform2
+Position = (272, 136, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000024]
+Name = Platform2
+Position = (272, -144, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000025]
+Name = Platform2
+Position = (-272, 136, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = false
+Tiling = false
+
+[SO:00000026]
+Name = Platform2
+Position = (-272, -144, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = false
