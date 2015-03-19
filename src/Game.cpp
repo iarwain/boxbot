@@ -11,6 +11,43 @@
 
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
 
+// Event handler
+static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
+{
+  // Depending on event type
+  switch(_pstEvent->eType)
+  {
+
+  case orxEVENT_TYPE_VIEWPORT:
+  {
+    if(_pstEvent->eID == orxVIEWPORT_EVENT_RESIZE)
+    {
+      Game::GetInstance().UpdateFrustum();
+    }
+	break;
+  }
+
+  default:
+    break;
+  }
+  return orxSTATUS_SUCCESS;
+}
+
+void Game::UpdateFrustum()
+{
+  orxFLOAT fScreenWidth, fScreenHeight;
+  orxFLOAT fFrustumHeight;
+  orxAABOX stFrustum;
+
+  orxDisplay_GetScreenSize(&fScreenWidth, &fScreenHeight);
+
+  orxFLOAT fRatio = fScreenWidth / fScreenHeight;
+  fFrustumHeight = orx2F(1024) / fRatio;
+
+  orxCamera_GetFrustum( GetMainCamera(), &stFrustum);
+  orxCamera_SetFrustum( GetMainCamera(), orx2F(1024), fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
+}
+
 void Game::OnStartGame()
 {
 }
@@ -40,6 +77,10 @@ orxSTATUS Game::Init()
   SetMapName("Level1.map");
   LoadMap();
 
+  orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
+
+  UpdateFrustum();
+
   // Done!
   return eResult;
 }
@@ -59,6 +100,7 @@ orxSTATUS Game::Run()
 
 void Game::Exit()
 {
+  orxEvent_RemoveHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
 }
 
 void Game::BindObjects()

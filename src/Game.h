@@ -12,6 +12,9 @@
 
 class Game: public Scroll<Game> {
 
+public:
+	void            UpdateFrustum();
+
 private:
 
     void            Update(const orxCLOCK_INFO &_rstInfo);
