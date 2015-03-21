@@ -16,6 +16,7 @@ public:
 
               void             Left();
               void             Right();
+              void             Jump();
               void             Stop();
 
 private:
@@ -23,6 +24,7 @@ private:
 	        orxVECTOR          mvVelocity;
 	        orxBOOL            mbGrounded;
 	        orxBOOL            mbFalling;
+	        orxBOOL            mbJump;
 	        orxU32             mu32CollisionFlag;
 	        orxFLOAT           mfHorizontalAxis;
 

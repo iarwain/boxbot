@@ -10,9 +10,9 @@
 
 static  const orxFLOAT sfAcceleration = orx2F(4.f);
 static  const orxFLOAT sfMaxSpeed     = orx2F(150.f);
-static  const orxFLOAT sfGravity      = orx2F(360.f);
-static  const orxFLOAT sfMaxFall      = orx2F(200.f);
-static  const orxFLOAT sfJump         = orx2F(200.f);
+static  const orxFLOAT sfGravity      = orx2F(981.f);
+static  const orxFLOAT sfMaxFall      = orx2F(500.f);
+static  const orxFLOAT sfJump         = orx2F(550.f);
 
 static  const orxS32   ss32HorizontalRays = 6;
 static  const orxS32   ss32VerticalRays   = 4;
@@ -27,6 +27,7 @@ void Player::OnCreate()
   mbFalling = orxFALSE;
   mu32CollisionFlag = orxPhysics_GetCollisionFlagValue(szPlatform);
   mfHorizontalAxis = orxFLOAT_0;
+  mbJump = orxFALSE;
 
   Game::GetInstance().RegisterPlayer(*this);
 }
@@ -50,11 +51,18 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
     fNewVelocityX += sfAcceleration * mfHorizontalAxis;
     fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
   }
-  else if (mvVelocity.fX != orxFLOAT_0)
+  else if (mvVelocity.fX != orxFLOAT_0 && mbGrounded)
   {
-    fNewVelocityX += sfAcceleration * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
+    fNewVelocityX += sfAcceleration / 2 * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
   }
   mvVelocity.fX = fNewVelocityX;
+
+  if(mbJump && mbGrounded)
+  {
+    mvVelocity.fY = -sfJump;
+    mbGrounded = orxFALSE;
+  }
+  mbJump = orxFALSE;
 
   // Update position
   GetPosition(vPosition, orxTRUE);
@@ -76,6 +84,11 @@ void Player::Right()
 void Player::Stop()
 {
   mfHorizontalAxis = orxFLOAT_0;
+}
+
+void Player::Jump()
+{
+  mbJump = orxTRUE;
 }
 
 void Player::ApplyGravity(orxFLOAT _fDT)
@@ -105,9 +118,9 @@ void Player::ApplyGravity(orxFLOAT _fDT)
     GetScale(vScale, orxTRUE);
     orxVector_Mul(&vSize, &vSize, &vScale);
 
-    fDistance = vSize.fY / 2 + (mbGrounded ? sfMargin : orxMath_Abs(mvVelocity.fY * _fDT));
-    orxVector_Set(&vStartPoint, vCenter.fX - vSize.fX / 2 + sfMargin, vCenter.fY, orxFLOAT_0);
-    orxVector_Set(&vEndPoint, vCenter.fX + vSize.fX / 2 - sfMargin, vCenter.fY, orxFLOAT_0);
+    fDistance = sfMargin + (mbGrounded ? sfMargin : orxMath_Abs(mvVelocity.fY * _fDT));
+    orxVector_Set(&vStartPoint, vCenter.fX - vSize.fX / 2 + sfMargin, vCenter.fY + vSize.fY / 2 - sfMargin, orxFLOAT_0);
+    orxVector_Set(&vEndPoint, vCenter.fX + vSize.fX / 2 - sfMargin, vCenter.fY + vSize.fY / 2 - sfMargin, orxFLOAT_0);
 
     for(int i = 0; i < ss32VerticalRays; i ++)
     {

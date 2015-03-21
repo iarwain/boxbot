@@ -13,6 +13,7 @@
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
 static  const orxSTRING szInputLeft                     = "Left";
 static  const orxSTRING szInputRight                    = "Right";
+static  const orxSTRING szInputJump                     = "Jump";
 
 // Event handler
 static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
@@ -84,6 +85,11 @@ void Game::Update(const orxCLOCK_INFO &_rstInfo)
     else
     {
       mpoPlayer->Stop();
+    }
+
+    if(orxInput_IsActive(szInputJump))
+    {
+      mpoPlayer->Jump();
     }
   }
 }
