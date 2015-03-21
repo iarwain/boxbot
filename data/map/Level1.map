@@ -7,21 +7,21 @@ ObjectNumber = 25
 
 [ScrollEd]
 EncryptSave = false
-LayerIndex = 4
+LayerIndex = 7
 
 [SO:00000000]
 Name = Cog5
-Position = (-473, -217, 3.33333)
+Position = (-444, -253, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 117.327705
 Smoothing = true
 Tiling = false
 
 [SO:00000001]
 Name = Cog2
-Position = (-388, -132, 3.33333)
+Position = (-278, -132, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
@@ -29,7 +29,7 @@ Tiling = false
 Name = Cog6
 Position = (497, 165, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = -78.218506
 Smoothing = true
 Tiling = false
 
@@ -37,7 +37,7 @@ Tiling = false
 Name = Cog4
 Position = (-321, 179, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = -117.327705
 Smoothing = true
 Tiling = false
 
@@ -45,7 +45,7 @@ Tiling = false
 Name = Cog4
 Position = (165, -205, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = -117.327705
 Smoothing = true
 Tiling = false
 
@@ -53,7 +53,7 @@ Tiling = false
 Name = Cog1
 Position = (50, -187, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
@@ -61,7 +61,7 @@ Tiling = false
 Name = Cog2
 Position = (249, -122, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
@@ -69,7 +69,7 @@ Tiling = false
 Name = Cog5
 Position = (-189, 125, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 117.327705
 Smoothing = true
 Tiling = false
 
@@ -77,23 +77,23 @@ Tiling = false
 Name = Cog1
 Position = (388, 70, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
 [SO:00000010]
 Name = Cog2
-Position = (440, -7, 3.33333)
+Position = (356, 202, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
 [SO:00000011]
 Name = Cog3
-Position = (-291, -150, 3.33333)
+Position = (-382, -144, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = -47.346310
 Smoothing = true
 Tiling = false
 
@@ -101,7 +101,7 @@ Tiling = false
 Name = Cog2
 Position = (-404, 97, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 175.991638
 Smoothing = true
 Tiling = false
 
