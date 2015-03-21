@@ -6,6 +6,7 @@
  */
 
 #include "Player.h"
+#include "Game.h"
 
 static  const orxFLOAT sfAcceleration = orx2F(4.f);
 static  const orxFLOAT sfMaxSpeed     = orx2F(150.f);
@@ -25,11 +26,14 @@ void Player::OnCreate()
   mbGrounded = orxFALSE;
   mbFalling = orxFALSE;
   mu32CollisionFlag = orxPhysics_GetCollisionFlagValue(szPlatform);
+  mfHorizontalAxis = orxFLOAT_0;
+
+  Game::GetInstance().RegisterPlayer(*this);
 }
 
 void Player::OnDelete()
 {
-
+  Game::GetInstance().UnregisterPlayer();
 }
 
 void Player::Update(const orxCLOCK_INFO &_rstInfo)
@@ -39,11 +43,39 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   // Apply Gravity
   ApplyGravity(_rstInfo.fDT);
 
+  // Apply horizontal input
+  orxFLOAT fNewVelocityX = mvVelocity.fX;
+  if(mfHorizontalAxis != orxFLOAT_0)
+  {
+    fNewVelocityX += sfAcceleration * mfHorizontalAxis;
+    fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
+  }
+  else if (mvVelocity.fX != orxFLOAT_0)
+  {
+    fNewVelocityX += sfAcceleration * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
+  }
+  mvVelocity.fX = fNewVelocityX;
+
   // Update position
   GetPosition(vPosition, orxTRUE);
   orxVector_Mulf(&vDelta, &mvVelocity, _rstInfo.fDT);
   orxVector_Add(&vPosition, &vPosition, &vDelta);
   SetPosition(vPosition, orxTRUE);
+}
+
+void Player::Left()
+{
+  mfHorizontalAxis = -orxFLOAT_1;
+}
+
+void Player::Right()
+{
+  mfHorizontalAxis = orxFLOAT_1;
+}
+
+void Player::Stop()
+{
+  mfHorizontalAxis = orxFLOAT_0;
 }
 
 void Player::ApplyGravity(orxFLOAT _fDT)
@@ -86,13 +118,7 @@ void Player::ApplyGravity(orxFLOAT _fDT)
       orxVector_Copy(&vEnd, &vOrigin);
       vEnd.fY += fDistance;
 
-      orxBODY* pBody = orxBody_Raycast(&vOrigin,
-          		&vEnd,
-          		0xFFFF,
-          		mu32CollisionFlag,
-          		orxTRUE,
-          		&vContact,
-          		orxNULL);
+      orxBODY* pBody = orxBody_Raycast(&vOrigin, &vEnd,	0xFFFF,	mu32CollisionFlag, orxTRUE,	&vContact, orxNULL);
 
       bConnected = pBody != orxNULL;
 

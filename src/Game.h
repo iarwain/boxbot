@@ -10,10 +10,15 @@
 
 #include "Scroll/Scroll.h"
 
+class Player;
+
 class Game: public Scroll<Game> {
 
 public:
 	void            UpdateFrustum();
+
+	void            RegisterPlayer(Player &_roPlayer);
+	void            UnregisterPlayer() { mpoPlayer = orxNULL; }
 
 private:
 
@@ -27,6 +32,7 @@ private:
     void            OnStopGame();
     void            OnMapLoad();
 
+    Player         *mpoPlayer;
 	orxOBJECT      *mpstCameraObject;
     orxBOOL         mbQuit;
 };

@@ -12,11 +12,19 @@
 
 class Player: public ScrollObject {
 
+public:
+
+              void             Left();
+              void             Right();
+              void             Stop();
+
 private:
+
 	        orxVECTOR          mvVelocity;
 	        orxBOOL            mbGrounded;
 	        orxBOOL            mbFalling;
 	        orxU32             mu32CollisionFlag;
+	        orxFLOAT           mfHorizontalAxis;
 
 	           void            ApplyGravity(orxFLOAT _fDT);
 protected:

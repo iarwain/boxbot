@@ -11,6 +11,8 @@
 #include "Player.h"
 
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
+static  const orxSTRING szInputLeft                     = "Left";
+static  const orxSTRING szInputRight                    = "Right";
 
 // Event handler
 static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
@@ -49,6 +51,12 @@ void Game::UpdateFrustum()
   orxCamera_SetFrustum( GetMainCamera(), orx2F(1024), fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
 }
 
+void Game::RegisterPlayer(Player &_roPlayer)
+{
+  orxASSERT(mpoPlayer == orxNULL);
+  mpoPlayer = &_roPlayer;
+}
+
 void Game::OnStartGame()
 {
 }
@@ -63,6 +71,21 @@ void Game::OnMapLoad()
 
 void Game::Update(const orxCLOCK_INFO &_rstInfo)
 {
+  if(mpoPlayer != orxNULL)
+  {
+    if(orxInput_IsActive(szInputLeft))
+    {
+      mpoPlayer->Left();
+    }
+    else if(orxInput_IsActive(szInputRight))
+    {
+      mpoPlayer->Right();
+    }
+    else
+    {
+      mpoPlayer->Stop();
+    }
+  }
 }
 
 orxSTATUS Game::Init()
@@ -70,6 +93,7 @@ orxSTATUS Game::Init()
   orxSTATUS eResult = orxSTATUS_SUCCESS;
 
   mbQuit = orxFALSE;
+  mpoPlayer = orxNULL;
 
   mpstCameraObject      = orxObject_CreateFromConfig(szConfigCameraObject);
   // Adds camera as child
