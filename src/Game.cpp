@@ -8,6 +8,7 @@
 #define __SCROLL_IMPL__
 
 #include "Game.h"
+#include "Player.h"
 
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
 
@@ -105,6 +106,7 @@ void Game::Exit()
 
 void Game::BindObjects()
 {
+  ScrollBindObject<Player>("Player");
 }
 
 int main(int argc, char **argv)
