@@ -3,11 +3,11 @@ CameraPosition = (0, 0, -5)
 CameraZoom = 1.000000
 Differential = false
 LayerNumber = 9
-ObjectNumber = 24
+ObjectNumber = 25
 
 [ScrollEd]
 EncryptSave = false
-LayerIndex = 6
+LayerIndex = 4
 
 [SO:00000000]
 Name = Cog5
@@ -196,6 +196,14 @@ Tiling = false
 [SO:00000026]
 Name = Platform2
 Position = (-272, -168, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000028]
+Name = Player
+Position = (-0, 56, 0)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
