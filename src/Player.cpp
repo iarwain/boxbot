@@ -80,26 +80,6 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   SetPosition(vPosition, orxTRUE);
 }
 
-void Player::Left()
-{
-  mfHorizontalAxis = -orxFLOAT_1;
-}
-
-void Player::Right()
-{
-  mfHorizontalAxis = orxFLOAT_1;
-}
-
-void Player::Stop()
-{
-  mfHorizontalAxis = orxFLOAT_0;
-}
-
-void Player::Jump()
-{
-  mbJump = orxTRUE;
-}
-
 void Player::ApplyGravity(orxFLOAT _fDT)
 {
   if(!mbGrounded)

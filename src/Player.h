@@ -14,10 +14,10 @@ class Player: public ScrollObject {
 
 public:
 
-              void             Left();
-              void             Right();
-              void             Jump();
-              void             Stop();
+              void             Left() { mfHorizontalAxis = -orxFLOAT_1; }
+              void             Right() { mfHorizontalAxis = orxFLOAT_1; }
+              void             Jump() { mbJump = orxTRUE; }
+              void             Stop() { mfHorizontalAxis = orxFLOAT_0; }
 
 private:
 
