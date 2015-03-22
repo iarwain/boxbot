@@ -25,10 +25,13 @@ private:
 	        orxBOOL            mbGrounded;
 	        orxBOOL            mbFalling;
 	        orxBOOL            mbJump;
-	        orxU32             mu32CollisionFlag;
+	        orxU32             mu32VerticalCollisionFlag;
+	        orxU32             mu32HorizontalCollisionFlag;
 	        orxFLOAT           mfHorizontalAxis;
 
 	           void            ApplyGravity(orxFLOAT _fDT);
+	           void            CheckVerticalRays(orxFLOAT _fDT);
+	           void            CheckHorizontalRays(orxFLOAT _fDT);
 protected:
 
                void            OnCreate();
