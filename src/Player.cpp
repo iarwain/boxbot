@@ -8,10 +8,10 @@
 #include "Player.h"
 #include "Game.h"
 
-static  const orxFLOAT sfAcceleration = orx2F(4.f);
+static  const orxFLOAT sfAcceleration = orx2F(240.f);
 static  const orxFLOAT sfMaxSpeed     = orx2F(150.f);
 static  const orxFLOAT sfGravity      = orx2F(981.f);
-static  const orxFLOAT sfMaxFall      = orx2F(500.f);
+static  const orxFLOAT sfMaxFall      = orxFLOAT_MAX;
 static  const orxFLOAT sfJump         = orx2F(550.f);
 
 static  const orxS32   ss32HorizontalRays = 6;
@@ -48,12 +48,12 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   orxFLOAT fNewVelocityX = mvVelocity.fX;
   if(mfHorizontalAxis != orxFLOAT_0)
   {
-    fNewVelocityX += sfAcceleration * mfHorizontalAxis;
+    fNewVelocityX += sfAcceleration * mfHorizontalAxis * _rstInfo.fDT;
     fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
   }
   else if (mvVelocity.fX != orxFLOAT_0 && mbGrounded)
   {
-    fNewVelocityX += sfAcceleration / 2 * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
+    fNewVelocityX += sfAcceleration * _rstInfo.fDT * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
   }
   mvVelocity.fX = fNewVelocityX;
 
