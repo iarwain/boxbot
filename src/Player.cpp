@@ -16,7 +16,7 @@ static  orxFLOAT sfJump;
 static  orxFLOAT sfEarlyJump;
 
 static  const orxFLOAT sfAcceleration   = orx2F(400.f);
-static  const orxFLOAT sfFrictionFactor = orx2F(600.f);
+static  const orxFLOAT sfFrictionFactor = orx2F(1000.f);
 static  const orxFLOAT sfMaxSpeed       = orx2F(250.f);
 static  const orxFLOAT sfMaxFall        = orxFLOAT_MAX;
 
