@@ -89,7 +89,11 @@ void Game::Update(const orxCLOCK_INFO &_rstInfo)
 
     if(orxInput_IsActive(szInputJump))
     {
-      mpoPlayer->Jump();
+      mpoPlayer->Jump(orxTRUE);
+    }
+    else
+    {
+      mpoPlayer->Jump(orxFALSE);
     }
   }
 }

@@ -16,7 +16,7 @@ public:
 
               void             Left() { mfHorizontalAxis = -orxFLOAT_1; }
               void             Right() { mfHorizontalAxis = orxFLOAT_1; }
-              void             Jump() { mbJump = orxTRUE; }
+              void             Jump(orxBOOL _bJump) { mbJump = _bJump; }
               void             Stop() { mfHorizontalAxis = orxFLOAT_0; }
 
 private:

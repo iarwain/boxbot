@@ -60,13 +60,19 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   }
   mvVelocity.fX = fNewVelocityX;
 
-  // Jump ?
-  if(mbJump && mbGrounded)
+  if(mbGrounded)
   {
-    mvVelocity.fY = -sfJump;
-    mbGrounded = orxFALSE;
+    // Jump ?
+    if(mbJump)
+    {
+      mvVelocity.fY = -sfJump;
+      mbGrounded = orxFALSE;
+    }
   }
-  mbJump = orxFALSE;
+  else if(!mbJump && mvVelocity.fY < orxFLOAT_0)
+  {
+    mvVelocity.fY = orxFLOAT_0;
+  }
 
   // Apply phyics
   ApplyGravity(_rstInfo.fDT);
