@@ -15,10 +15,11 @@ static  orxFLOAT sfGravity;
 static  orxFLOAT sfJump;
 static  orxFLOAT sfEarlyJump;
 
-static  const orxFLOAT sfAcceleration   = orx2F(400.f);
-static  const orxFLOAT sfFrictionFactor = orx2F(1000.f);
-static  const orxFLOAT sfMaxSpeed       = orx2F(250.f);
-static  const orxFLOAT sfMaxFall        = orxFLOAT_MAX;
+static  const orxFLOAT sfAcceleration     = orx2F(400.f);
+static  const orxFLOAT sfFrictionFactor   = orx2F(1000.f);
+static  const orxFLOAT sfMaxSpeed         = orx2F(300.f);
+static  const orxFLOAT sfMaxFall          = orxFLOAT_MAX;
+static  const orxFLOAT sfReactivityFactor = orx2F(2);
 
 static  const orxS32   ss32HorizontalRays = 6;
 static  const orxS32   ss32VerticalRays   = 4;
@@ -57,7 +58,15 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   orxFLOAT fNewVelocityX = mvVelocity.fX;
   if(mfHorizontalAxis != orxFLOAT_0)
   {
-    fNewVelocityX += sfAcceleration * mfHorizontalAxis * _rstInfo.fDT;
+    orxFLOAT fReactivity = orxFLOAT_0;
+    if(mePlayerState == PlayerStateGrounded
+     && ((mfHorizontalAxis > orxFLOAT_0 && mvVelocity.fX < orxFLOAT_0)
+      || (mfHorizontalAxis < orxFLOAT_0 && mvVelocity.fX > orxFLOAT_0)))
+    {
+      fReactivity = sfAcceleration * mfHorizontalAxis * _rstInfo.fDT * sfReactivityFactor;
+    }
+
+    fNewVelocityX += sfAcceleration * mfHorizontalAxis * _rstInfo.fDT + fReactivity;
     fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
   }
   else if (mvVelocity.fX != orxFLOAT_0 && mePlayerState == PlayerStateGrounded)
