@@ -11,6 +11,8 @@
 #include "Player.h"
 
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
+static  const orxSTRING szConfigLeftViewport            = "LeftViewport";
+static  const orxSTRING szConfigRightViewport           = "RightViewport";
 static  const orxSTRING szInputLeft                     = "Left";
 static  const orxSTRING szInputRight                    = "Right";
 static  const orxSTRING szInputJump                     = "Jump";
@@ -39,17 +41,6 @@ static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
 
 void Game::UpdateFrustum()
 {
-  orxFLOAT fScreenWidth, fScreenHeight;
-  orxFLOAT fFrustumHeight;
-  orxAABOX stFrustum;
-
-  orxDisplay_GetScreenSize(&fScreenWidth, &fScreenHeight);
-
-  orxFLOAT fRatio = fScreenWidth / fScreenHeight;
-  fFrustumHeight = orx2F(1024) / fRatio;
-
-  orxCamera_GetFrustum( GetMainCamera(), &stFrustum);
-  orxCamera_SetFrustum( GetMainCamera(), orx2F(1024), fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
 }
 
 void Game::RegisterPlayer(Player &_roPlayer)
@@ -68,6 +59,22 @@ void Game::OnStopGame()
 
 void Game::OnMapLoad()
 {
+  orxVECTOR vCameraPosition;
+  orxFLOAT fZ;
+
+  // get main camera Z
+  orxCamera_GetPosition(GetMainCamera(), &vCameraPosition);
+  fZ = vCameraPosition.fZ;
+
+  // update left camera Z
+  orxCamera_GetPosition(mpstLeftCamera, &vCameraPosition);
+  vCameraPosition.fZ = fZ;
+  orxCamera_SetPosition(mpstLeftCamera, &vCameraPosition);
+
+  // update right camera Z
+  orxCamera_GetPosition(mpstRightCamera, &vCameraPosition);
+  vCameraPosition.fZ = fZ;
+  orxCamera_SetPosition(mpstRightCamera, &vCameraPosition);
 }
 
 void Game::Update(const orxCLOCK_INFO &_rstInfo)
@@ -105,9 +112,15 @@ orxSTATUS Game::Init()
   mbQuit = orxFALSE;
   mpoPlayer = orxNULL;
 
+  orxVIEWPORT* pstLeftViewport = orxViewport_CreateFromConfig(szConfigLeftViewport);
+  orxVIEWPORT* pstRightViewport = orxViewport_CreateFromConfig(szConfigRightViewport);
+  mpstLeftCamera        = orxViewport_GetCamera(pstLeftViewport);
+  mpstRightCamera       = orxViewport_GetCamera(pstRightViewport);
   mpstCameraObject      = orxObject_CreateFromConfig(szConfigCameraObject);
   // Adds camera as child
   orxCamera_SetParent(GetMainCamera(), mpstCameraObject);
+  orxCamera_SetParent(mpstLeftCamera, mpstCameraObject);
+  orxCamera_SetParent(mpstRightCamera, mpstCameraObject);
 
   SetMapName("Level1.map");
   LoadMap();

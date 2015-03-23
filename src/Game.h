@@ -35,6 +35,9 @@ private:
     Player         *mpoPlayer;
 	orxOBJECT      *mpstCameraObject;
     orxBOOL         mbQuit;
+
+    orxCAMERA      *mpstLeftCamera;
+    orxCAMERA      *mpstRightCamera;
 };
 
 #endif /* GAME_H_ */

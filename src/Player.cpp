@@ -93,6 +93,17 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   GetPosition(vPosition, orxTRUE);
   orxVector_Mulf(&vDelta, &mvVelocity, _rstInfo.fDT);
   orxVector_Add(&vPosition, &vPosition, &vDelta);
+
+  // wrap player position
+  if(vPosition.fX >= orx2F(512))
+  {
+    vPosition.fX -= orx2F(1024);
+  }
+  else if(vPosition.fX <= orx2F(-512))
+  {
+    vPosition.fX += orx2F(1024);
+  }
+
   SetPosition(vPosition, orxTRUE);
 }
 
