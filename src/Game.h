@@ -15,7 +15,7 @@ class Player;
 class Game: public Scroll<Game> {
 
 public:
-	void            UpdateFrustum();
+	void            UpdateFrustum(orxVIEWPORT* _pstViewport);
 
 	void            RegisterPlayer(Player &_roPlayer);
 	void            UnregisterPlayer() { mpoPlayer = orxNULL; }
@@ -38,6 +38,9 @@ private:
 
     orxCAMERA      *mpstLeftCamera;
     orxCAMERA      *mpstRightCamera;
+
+    orxVIEWPORT    *mpstUIViewport;
+    orxCAMERA      *mpstUICamera;
 };
 
 #endif /* GAME_H_ */

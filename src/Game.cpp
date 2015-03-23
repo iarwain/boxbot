@@ -13,9 +13,12 @@
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
 static  const orxSTRING szConfigLeftViewport            = "LeftViewport";
 static  const orxSTRING szConfigRightViewport           = "RightViewport";
+static  const orxSTRING szConfigUIViewport              = "UIViewport";
+
 static  const orxSTRING szInputLeft                     = "Left";
 static  const orxSTRING szInputRight                    = "Right";
 static  const orxSTRING szInputJump                     = "Jump";
+static  const orxSTRING szInputQuit                     = "Quit";
 
 // Event handler
 static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
@@ -28,7 +31,7 @@ static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
   {
     if(_pstEvent->eID == orxVIEWPORT_EVENT_RESIZE)
     {
-      Game::GetInstance().UpdateFrustum();
+      Game::GetInstance().UpdateFrustum((orxVIEWPORT*)_pstEvent->hSender);
     }
 	break;
   }
@@ -39,8 +42,28 @@ static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent)
   return orxSTATUS_SUCCESS;
 }
 
-void Game::UpdateFrustum()
+void Game::UpdateFrustum(orxVIEWPORT *_pstViewport)
 {
+  if(_pstViewport == mpstUIViewport)
+  {
+    orxFLOAT fScreenWidth, fScreenHeight;
+    orxFLOAT fFrustumWidth, fFrustumHeight;
+    orxAABOX stFrustum;
+
+    orxDisplay_GetScreenSize(&fScreenWidth, &fScreenHeight);
+
+    orxConfig_PushSection( "UICamera" );
+    fFrustumWidth = orxConfig_GetFloat( "FrustumWidth" );
+    fFrustumHeight = orxConfig_GetFloat( "FrustumHeight" );
+    orxConfig_PopSection();
+
+    orxFLOAT fRatio = orxMAX( fFrustumWidth / fScreenWidth, fFrustumHeight / fScreenHeight );
+    fFrustumWidth = fScreenWidth * fRatio;
+    fFrustumHeight = fScreenHeight * fRatio;
+
+    orxCamera_GetFrustum( mpstUICamera, &stFrustum);
+    orxCamera_SetFrustum( mpstUICamera, fFrustumWidth, fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
+  }
 }
 
 void Game::RegisterPlayer(Player &_roPlayer)
@@ -103,6 +126,11 @@ void Game::Update(const orxCLOCK_INFO &_rstInfo)
       mpoPlayer->Jump(orxFALSE);
     }
   }
+
+  if(!orxInput_IsActive(szInputQuit) && orxInput_HasNewStatus(szInputQuit))
+  {
+    mbQuit = orxTRUE;
+  }
 }
 
 orxSTATUS Game::Init()
@@ -114,8 +142,12 @@ orxSTATUS Game::Init()
 
   orxVIEWPORT* pstLeftViewport = orxViewport_CreateFromConfig(szConfigLeftViewport);
   orxVIEWPORT* pstRightViewport = orxViewport_CreateFromConfig(szConfigRightViewport);
+  mpstUIViewport = orxViewport_CreateFromConfig(szConfigUIViewport);
+
   mpstLeftCamera        = orxViewport_GetCamera(pstLeftViewport);
   mpstRightCamera       = orxViewport_GetCamera(pstRightViewport);
+  mpstUICamera          = orxViewport_GetCamera(mpstUIViewport);
+
   mpstCameraObject      = orxObject_CreateFromConfig(szConfigCameraObject);
   // Adds camera as child
   orxCamera_SetParent(GetMainCamera(), mpstCameraObject);
@@ -127,7 +159,7 @@ orxSTATUS Game::Init()
 
   orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
 
-  UpdateFrustum();
+  UpdateFrustum(mpstUIViewport);
 
   // Done!
   return eResult;
