@@ -8,12 +8,15 @@
 #include "Player.h"
 #include "Game.h"
 
+#define KF_JUMP_MAX_HEIGH      orx2F(160.f)
+#define KF_JUMP_TIME           orx2F(0.44f)
+static  orxFLOAT sfGravity;
+static  orxFLOAT sfJump;
+
 static  const orxFLOAT sfAcceleration   = orx2F(300.f);
 static  const orxFLOAT sfFrictionFactor = orx2F(600.f);
 static  const orxFLOAT sfMaxSpeed       = orx2F(150.f);
-static  const orxFLOAT sfGravity        = orx2F(981.f);
 static  const orxFLOAT sfMaxFall        = orxFLOAT_MAX;
-static  const orxFLOAT sfJump           = orx2F(550.f);
 
 static  const orxS32   ss32HorizontalRays = 6;
 static  const orxS32   ss32VerticalRays   = 4;
@@ -24,6 +27,9 @@ static  const orxSTRING szWall       = "Wall";
 
 void Player::OnCreate()
 {
+  sfGravity = orx2F((2.f * KF_JUMP_MAX_HEIGH) / (KF_JUMP_TIME * KF_JUMP_TIME));
+  sfJump = orxMath_Sqrt(2.f * sfGravity * KF_JUMP_MAX_HEIGH);
+
   orxVector_Copy(&mvVelocity, &orxVECTOR_0);
   mu32VerticalCollisionFlag = orxPhysics_GetCollisionFlagValue(szPlatform);
   mu32HorizontalCollisionFlag = orxPhysics_GetCollisionFlagValue(szWall);
