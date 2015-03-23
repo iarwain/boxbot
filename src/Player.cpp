@@ -25,12 +25,12 @@ static  const orxSTRING szWall       = "Wall";
 void Player::OnCreate()
 {
   orxVector_Copy(&mvVelocity, &orxVECTOR_0);
-  mbGrounded = orxFALSE;
-  mbFalling = orxFALSE;
   mu32VerticalCollisionFlag = orxPhysics_GetCollisionFlagValue(szPlatform);
   mu32HorizontalCollisionFlag = orxPhysics_GetCollisionFlagValue(szWall);
   mfHorizontalAxis = orxFLOAT_0;
   mbJump = orxFALSE;
+
+  mePlayerState = PlayerStateNone;
 
   Game::GetInstance().RegisterPlayer(*this);
 }
@@ -51,7 +51,7 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
     fNewVelocityX += sfAcceleration * mfHorizontalAxis * _rstInfo.fDT;
     fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
   }
-  else if (mvVelocity.fX != orxFLOAT_0 && mbGrounded)
+  else if (mvVelocity.fX != orxFLOAT_0 && mePlayerState == PlayerStateGrounded)
   {
     // Apply ground friction
     orxFLOAT fFriction = (sfFrictionFactor) * _rstInfo.fDT * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
@@ -60,17 +60,18 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
   }
   mvVelocity.fX = fNewVelocityX;
 
-  if(mbGrounded)
+  if(mePlayerState == PlayerStateGrounded)
   {
     // Jump ?
     if(mbJump)
     {
       mvVelocity.fY = -sfJump;
-      mbGrounded = orxFALSE;
+      mePlayerState = PlayerStateJumping;
     }
   }
-  else if(!mbJump && mvVelocity.fY < orxFLOAT_0)
+  else if(!mbJump && mePlayerState == PlayerStateJumping)
   {
+    // stop Jump
     mvVelocity.fY = orxFLOAT_0;
   }
 
@@ -88,20 +89,20 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
 
 void Player::ApplyGravity(orxFLOAT _fDT)
 {
-  if(!mbGrounded)
+  if(mePlayerState != PlayerStateGrounded)
   {
     orxVector_Set(&mvVelocity, mvVelocity.fX, orxMIN(mvVelocity.fY + sfGravity * _fDT, sfMaxFall), orxFLOAT_0);
   }
 
   if(mvVelocity.fY > orxFLOAT_0)
   {
-    mbFalling = orxTRUE;
+    mePlayerState = PlayerStateFalling;
   }
 }
 
 void Player::CheckVerticalRays(orxFLOAT _fDT)
 {
-  if(mbGrounded || mbFalling)
+  if(mePlayerState == PlayerStateGrounded || mePlayerState == PlayerStateFalling)
   {
     orxVECTOR vStartPoint, vEndPoint;
     orxFLOAT fDistance;
@@ -116,7 +117,7 @@ void Player::CheckVerticalRays(orxFLOAT _fDT)
     GetScale(vScale, orxTRUE);
     orxVector_Mul(&vSize, &vSize, &vScale);
 
-    fDistance = sfMargin + (mbGrounded ? sfMargin : orxMath_Abs(mvVelocity.fY * _fDT));
+    fDistance = sfMargin + (mePlayerState == PlayerStateGrounded ? sfMargin : orxMath_Abs(mvVelocity.fY * _fDT));
     orxVector_Set(&vStartPoint, vCenter.fX - vSize.fX / 2 + sfMargin, vCenter.fY + vSize.fY / 2 - sfMargin, orxFLOAT_0);
     orxVector_Set(&vEndPoint, vCenter.fX + vSize.fX / 2 - sfMargin, vCenter.fY + vSize.fY / 2 - sfMargin, orxFLOAT_0);
 
@@ -136,8 +137,7 @@ void Player::CheckVerticalRays(orxFLOAT _fDT)
       if(bConnected)
       {
         orxVECTOR vPosition;
-        mbGrounded = orxTRUE;
-        mbFalling = orxFALSE;
+        mePlayerState = PlayerStateGrounded;
         GetPosition(vPosition, orxTRUE);
         vPosition.fY = vContact.fY;
         SetPosition(vPosition, orxTRUE);
@@ -148,7 +148,7 @@ void Player::CheckVerticalRays(orxFLOAT _fDT)
 
     if(!bConnected)
     {
-      mbGrounded = orxFALSE;
+    	mePlayerState = PlayerStateFalling;
     }
   }
 }

@@ -21,9 +21,19 @@ public:
 
 private:
 
+              enum PlayerState
+              {
+            	  PlayerStateGrounded = 0,
+            	  PlayerStateFalling,
+            	  PlayerStateJumping,
+
+            	  PlayerStateNumber,
+
+            	  PlayerStateNone = orxENUM_NONE
+              };
+
+            PlayerState        mePlayerState;
 	        orxVECTOR          mvVelocity;
-	        orxBOOL            mbGrounded;
-	        orxBOOL            mbFalling;
 	        orxBOOL            mbJump;
 	        orxU32             mu32VerticalCollisionFlag;
 	        orxU32             mu32HorizontalCollisionFlag;
