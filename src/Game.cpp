@@ -146,6 +146,8 @@ orxSTATUS Game::Init()
   orxVIEWPORT* pstRightViewport = orxViewport_CreateFromConfig(szConfigRightViewport);
   mpstUIViewport = orxViewport_CreateFromConfig(szConfigUIViewport);
 
+  orxVirtualGamePad::Init(mpstUIViewport);
+
   mpstLeftCamera        = orxViewport_GetCamera(pstLeftViewport);
   mpstRightCamera       = orxViewport_GetCamera(pstRightViewport);
   mpstUICamera          = orxViewport_GetCamera(mpstUIViewport);
@@ -159,11 +161,11 @@ orxSTATUS Game::Init()
   SetMapName("Level1.map");
   LoadMap();
 
+  orxObject_CreateFromConfig("GameUI");
+
   orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
 
   UpdateFrustum(mpstUIViewport);
-
-  orxVirtualGamePad::Init(mpstUIViewport);
 
   // Done!
   return eResult;
