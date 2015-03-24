@@ -16,12 +16,17 @@ public:
 	static void      BindObjects();
 
 	static orxSTATUS RegisterInput(VirtualGamePadInput * _poVirtualGamePadInput);
-	static void      UnregisterInput(VirtualGamePadInput * _poVirtualGamePadInput);
+	static orxSTATUS UnregisterInput(VirtualGamePadInput * _poVirtualGamePadInput);
 
 private:
 
-	static orxVIEWPORT*          spstViewport;
-	static orxCAMERA*            spstCamera;
+	static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent);
+
+	static VirtualGamePadInput *  GetVirutalInput(orxVECTOR *_pvPosition);
+
+	static orxVIEWPORT *                spstViewport;
+	static orxCAMERA *                  spstCamera;
+	static orxLINKLIST                  sstInputList;
 };
 
 #endif

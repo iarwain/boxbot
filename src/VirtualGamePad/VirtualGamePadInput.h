@@ -12,12 +12,21 @@
 
 class VirtualGamePadInput : public ScrollObject {
 
+friend class orxVirtualGamePad;
+
 public:
+
+        const  orxSTRING        GetInputName() { return mzInputName; }
 
 protected:
 
                 void            OnCreate();
                 void            OnDelete();
+
+private:
+
+        orxLINKLIST_NODE        mstNode;
+         const  orxSTRING       mzInputName;
 };
 
 #endif /* VIRTUALGAMEPADINPUT_H_ */

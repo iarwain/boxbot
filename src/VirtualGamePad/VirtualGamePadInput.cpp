@@ -8,8 +8,13 @@
 #include "VirtualGamePadInput.h"
 #include "orxVirtualGamePad.h"
 
+static const orxSTRING szConfigInputName = "InputName";
+
 void VirtualGamePadInput::OnCreate()
 {
+  orxMemory_Zero(&mstNode, sizeof(orxLINKLIST_NODE));
+  mzInputName = orxConfig_GetString(szConfigInputName);
+
   orxVirtualGamePad::RegisterInput(this);
 }
 
