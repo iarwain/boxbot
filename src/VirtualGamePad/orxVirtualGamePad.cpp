@@ -1,4 +1,7 @@
 #include "orxVirtualGamePad.h"
+#include "VirtualGamePadButton.h"
+
+static const orxSTRING szVirtualGamePadButton = "VirtualGamePadButton";
 
 //! Static variables
 orxVIEWPORT *orxVirtualGamePad::spstViewport = orxNULL;
@@ -31,6 +34,7 @@ orxSTATUS orxVirtualGamePad::Init(orxVIEWPORT* _pstViewport)
   spstCamera = orxViewport_GetCamera(spstViewport);
 
   eResult = orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orxVirtualGamePad_EventHandler);
+
   return eResult;
 }
 
@@ -40,6 +44,18 @@ void orxVirtualGamePad::Exit()
 }
 
 void orxVirtualGamePad::BindObjects()
+{
+  ScrollBindObject<VirtualGamePadButton>(szVirtualGamePadButton);
+}
+
+orxSTATUS orxVirtualGamePad::RegisterInput(VirtualGamePadInput *_poVirtualGamePadInput)
+{
+  orxSTATUS eResult = orxSTATUS_SUCCESS;
+
+  return eResult;
+}
+
+void orxVirtualGamePad::UnregisterInput(VirtualGamePadInput *_poVirtualGamePadInput)
 {
 
 }

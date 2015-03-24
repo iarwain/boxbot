@@ -10,6 +10,8 @@
 #include "Game.h"
 #include "Player.h"
 
+#include "VirtualGamePad/orxVirtualGamePad.h"
+
 static  const orxSTRING szConfigCameraObject            = "CameraObject";
 static  const orxSTRING szConfigLeftViewport            = "LeftViewport";
 static  const orxSTRING szConfigRightViewport           = "RightViewport";
@@ -161,6 +163,8 @@ orxSTATUS Game::Init()
 
   UpdateFrustum(mpstUIViewport);
 
+  orxVirtualGamePad::Init(mpstUIViewport);
+
   // Done!
   return eResult;
 }
@@ -181,11 +185,14 @@ orxSTATUS Game::Run()
 void Game::Exit()
 {
   orxEvent_RemoveHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
+  orxVirtualGamePad::Exit();
 }
 
 void Game::BindObjects()
 {
   ScrollBindObject<Player>("Player");
+
+  orxVirtualGamePad::BindObjects();
 }
 
 int main(int argc, char **argv)
