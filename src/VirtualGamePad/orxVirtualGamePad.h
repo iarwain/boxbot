@@ -17,12 +17,10 @@ public:
 
 private:
 
-	static orxSTATUS orxFASTCALL EventHandler(const orxEVENT *_pstEvent);
-
+	static orxSTATUS orxFASTCALL  EventHandler(const orxEVENT *_pstEvent);
 	static VirtualGamePadInput *  GetVirutalInput(orxVECTOR *_pvPosition);
 
 	static orxVIEWPORT *                spstViewport;
-	static orxCAMERA *                  spstCamera;
 };
 
 #endif

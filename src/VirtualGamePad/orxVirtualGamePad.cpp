@@ -10,7 +10,6 @@ static  const orxSTRING szGroupVirtualGamePad  = "orxVirtualGamePad";
 
 //! Static variables
 orxVIEWPORT   *orxVirtualGamePad::spstViewport = orxNULL;
-orxCAMERA     *orxVirtualGamePad::spstCamera = orxNULL;
 
 extern "C" orxSTATUS orxFASTCALL orxVirtualGamePad::EventHandler(const orxEVENT *_pstEvent)
 {
@@ -92,7 +91,6 @@ orxSTATUS orxVirtualGamePad::Init(orxVIEWPORT* _pstViewport)
   orxASSERT(_pstViewport != orxNULL);
 
   spstViewport = _pstViewport;
-  spstCamera = orxViewport_GetCamera(spstViewport);
 
   eResult = orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orxVirtualGamePad::EventHandler);
 
