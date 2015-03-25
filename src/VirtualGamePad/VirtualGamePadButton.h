@@ -14,6 +14,18 @@ class VirtualGamePadButton : public VirtualGamePadInput {
 
 public:
 
+                void            Reset();
+                void            ProcessTouch(orxVECTOR *_pvPosition);
+
+protected:
+
+                void            OnCreate();
+                void            OnDelete();
+
+private:
+
+    const  orxSTRING       mzInputName;
+
 };
 
 #endif /* VIRUTALGAMEPADBUTTON_H_ */

@@ -11,13 +11,11 @@ static  const orxSTRING szGroupVirtualGamePad  = "orxVirtualGamePad";
 //! Static variables
 orxVIEWPORT   *orxVirtualGamePad::spstViewport = orxNULL;
 orxCAMERA     *orxVirtualGamePad::spstCamera = orxNULL;
-orxLINKLIST    orxVirtualGamePad::sstInputList;
 
 extern "C" orxSTATUS orxFASTCALL orxVirtualGamePad::EventHandler(const orxEVENT *_pstEvent)
 {
   orxSTATUS eResult = orxSTATUS_SUCCESS;
   orxSYSTEM_EVENT_PAYLOAD *pstPayload;
-  const orxSTRING zInputName;
   orxVECTOR vTouchPos;
 
   switch(_pstEvent->eID)
@@ -37,24 +35,20 @@ extern "C" orxSTATUS orxFASTCALL orxVirtualGamePad::EventHandler(const orxEVENT 
       if(spoFocusedInputs[pstPayload->stTouch.u32ID] == orxNULL)
       {
         spoFocusedInputs[pstPayload->stTouch.u32ID] = poInput;
-        zInputName = poInput->GetInputName();
-        orxInput_SetPermanentValue(zInputName, orxFLOAT_1);
+        poInput->ProcessTouch(&vTouchPos);
       }
       else if(spoFocusedInputs[pstPayload->stTouch.u32ID] != poInput)
       {
-        zInputName = spoFocusedInputs[pstPayload->stTouch.u32ID]->GetInputName();
-        orxInput_ResetValue(zInputName);
+        spoFocusedInputs[pstPayload->stTouch.u32ID]->Reset();
         spoFocusedInputs[pstPayload->stTouch.u32ID] = poInput;
-        zInputName = poInput->GetInputName();
-        orxInput_SetPermanentValue(zInputName, orxFLOAT_1);
+        poInput->ProcessTouch(&vTouchPos);
       }
     }
     else
     {
       if(spoFocusedInputs[pstPayload->stTouch.u32ID] != orxNULL)
       {
-        zInputName = spoFocusedInputs[pstPayload->stTouch.u32ID]->GetInputName();
-        orxInput_ResetValue(zInputName);
+        spoFocusedInputs[pstPayload->stTouch.u32ID]->Reset();
         spoFocusedInputs[pstPayload->stTouch.u32ID] = orxNULL;
       }
     }
@@ -65,8 +59,7 @@ extern "C" orxSTATUS orxFASTCALL orxVirtualGamePad::EventHandler(const orxEVENT 
     pstPayload = (orxSYSTEM_EVENT_PAYLOAD *) _pstEvent->pstPayload;
     if(spoFocusedInputs[pstPayload->stTouch.u32ID] != orxNULL)
     {
-      zInputName = spoFocusedInputs[pstPayload->stTouch.u32ID]->GetInputName();
-      orxInput_ResetValue(zInputName);
+      spoFocusedInputs[pstPayload->stTouch.u32ID]->Reset();
       spoFocusedInputs[pstPayload->stTouch.u32ID] = orxNULL;
     }
 
@@ -100,7 +93,6 @@ orxSTATUS orxVirtualGamePad::Init(orxVIEWPORT* _pstViewport)
 
   spstViewport = _pstViewport;
   spstCamera = orxViewport_GetCamera(spstViewport);
-  orxMemory_Zero(&sstInputList, sizeof(orxLINKLIST));
 
   eResult = orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orxVirtualGamePad::EventHandler);
 
@@ -115,24 +107,4 @@ void orxVirtualGamePad::Exit()
 void orxVirtualGamePad::BindObjects()
 {
   ScrollBindObject<VirtualGamePadButton>(szVirtualGamePadButton);
-}
-
-orxSTATUS orxVirtualGamePad::RegisterInput(VirtualGamePadInput *_poVirtualGamePadInput)
-{
-  orxSTATUS eResult = orxSTATUS_SUCCESS;
-  orxASSERT(_poVirtualGamePadInput != orxNULL);
-
-  eResult = orxLinkList_AddEnd(&sstInputList, &_poVirtualGamePadInput->mstNode);
-
-  return eResult;
-}
-
-orxSTATUS orxVirtualGamePad::UnregisterInput(VirtualGamePadInput *_poVirtualGamePadInput)
-{
-  orxSTATUS eResult = orxSTATUS_SUCCESS;
-  orxASSERT(_poVirtualGamePadInput != orxNULL);
-
-  eResult = orxLinkList_Remove(&_poVirtualGamePadInput->mstNode);
-
-  return eResult;
 }

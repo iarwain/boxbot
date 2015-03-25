@@ -16,17 +16,9 @@ friend class orxVirtualGamePad;
 
 public:
 
-        const  orxSTRING        GetInputName() { return mzInputName; }
+      virtual   void            Reset() = 0;
+      virtual   void            ProcessTouch(orxVECTOR *_pvPosition) = 0;
 
-protected:
-
-                void            OnCreate();
-                void            OnDelete();
-
-private:
-
-        orxLINKLIST_NODE        mstNode;
-         const  orxSTRING       mzInputName;
 };
 
 #endif /* VIRTUALGAMEPADINPUT_H_ */
