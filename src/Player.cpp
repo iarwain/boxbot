@@ -8,18 +8,14 @@
 #include "Player.h"
 #include "Game.h"
 
-#define KF_JUMP_MAX_HEIGHT      orx2F(160.f)
-#define KF_JUMP_MIN_HEIGHT      orx2F(40.f)
-#define KF_JUMP_TIME            orx2F(0.44f)
-static  orxFLOAT sfGravity;
-static  orxFLOAT sfJump;
-static  orxFLOAT sfEarlyJump;
-
-static  const orxFLOAT sfAcceleration     = orx2F(400.f);
-static  const orxFLOAT sfFrictionFactor   = orx2F(1000.f);
-static  const orxFLOAT sfMaxSpeed         = orx2F(300.f);
-static  const orxFLOAT sfMaxFall          = orxFLOAT_MAX;
-static  const orxFLOAT sfReactivityFactor = orx2F(2);
+static  const orxSTRING szConfigJumpMaxHeight    = "JumpMaxHeight";
+static  const orxSTRING szConfigJumpMinHeight    = "JumpMinHeight";
+static  const orxSTRING szConfigJumpTime         = "JumpTime";
+static  const orxSTRING szConfigAcceleration     = "Acceleration";
+static  const orxSTRING szConfigFriction         = "Friction";
+static  const orxSTRING szConfigMaxSpeed         = "MaxSpeed";
+static  const orxSTRING szConfigMaxFall          = "MaxFall";
+static  const orxSTRING szConfigReactivityFactor = "ReactivityFactor";
 
 static  const orxS32   ss32HorizontalRays = 6;
 static  const orxS32   ss32VerticalRays   = 4;
@@ -30,15 +26,27 @@ static  const orxSTRING szWall       = "Wall";
 
 void Player::OnCreate()
 {
-  sfGravity = orx2F((orx2F(2) * KF_JUMP_MAX_HEIGHT) / (KF_JUMP_TIME * KF_JUMP_TIME));
-  sfJump = orxMath_Sqrt(orx2F(2) * sfGravity * KF_JUMP_MAX_HEIGHT);
-  sfEarlyJump = orxMath_Sqrt((sfJump * sfJump) + orx2F(2) * -sfGravity * (KF_JUMP_MAX_HEIGHT - KF_JUMP_MIN_HEIGHT));
+  orxFLOAT fJumpMaxHeight, fJumpMinHeight, fJumpTime;
+
+  fJumpMaxHeight = orxConfig_GetFloat(szConfigJumpMaxHeight);
+  fJumpMinHeight = orxConfig_GetFloat(szConfigJumpMinHeight);
+  fJumpTime = orxConfig_GetFloat(szConfigJumpTime);
+
+  mfGravity = orx2F((orx2F(2) * fJumpMaxHeight) / (fJumpTime * fJumpTime));
+  mfJumpVelocity = orxMath_Sqrt(orx2F(2) * mfGravity * fJumpMaxHeight);
+  mfEarlyJumpVelocity = orxMath_Sqrt((mfJumpVelocity * mfJumpVelocity) + orx2F(2) * -mfGravity * (fJumpMaxHeight - fJumpMinHeight));
 
   orxVector_Copy(&mvVelocity, &orxVECTOR_0);
   mu32VerticalCollisionFlag = orxPhysics_GetCollisionFlagValue(szPlatform);
   mu32HorizontalCollisionFlag = orxPhysics_GetCollisionFlagValue(szWall);
   mfHorizontalAxis = orxFLOAT_0;
   mbJump = orxFALSE;
+
+  mfAcceleration = orxConfig_GetFloat(szConfigAcceleration);
+  mfFriction = orxConfig_GetFloat(szConfigFriction);
+  mfMaxSpeed = orxConfig_GetFloat(szConfigMaxSpeed);
+  mfMaxFall = orxConfig_GetFloat(szConfigMaxFall);
+  mfReactivityFactor = orxConfig_GetFloat(szConfigReactivityFactor);
 
   mePlayerState = PlayerStateNone;
 
@@ -63,16 +71,16 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
      && ((mfHorizontalAxis > orxFLOAT_0 && mvVelocity.fX < orxFLOAT_0)
       || (mfHorizontalAxis < orxFLOAT_0 && mvVelocity.fX > orxFLOAT_0)))
     {
-      fReactivity = sfAcceleration * mfHorizontalAxis * _rstInfo.fDT * sfReactivityFactor;
+      fReactivity = mfAcceleration * mfHorizontalAxis * _rstInfo.fDT * mfReactivityFactor;
     }
 
-    fNewVelocityX += sfAcceleration * mfHorizontalAxis * _rstInfo.fDT + fReactivity;
-    fNewVelocityX = orxCLAMP(fNewVelocityX, -sfMaxSpeed, sfMaxSpeed);
+    fNewVelocityX += mfAcceleration * mfHorizontalAxis * _rstInfo.fDT + fReactivity;
+    fNewVelocityX = orxCLAMP(fNewVelocityX, -mfMaxSpeed, mfMaxSpeed);
   }
   else if (mvVelocity.fX != orxFLOAT_0 && mePlayerState == PlayerStateGrounded)
   {
     // Apply ground friction
-    orxFLOAT fFriction = (sfFrictionFactor) * _rstInfo.fDT * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
+    orxFLOAT fFriction = (mfFriction) * _rstInfo.fDT * (mvVelocity.fX > 0 ? -orxFLOAT_1 : orxFLOAT_1);
     fFriction = mvVelocity.fX > 0 ? orxMAX(fFriction, -mvVelocity.fX) : orxMIN(fFriction, -mvVelocity.fX);
     fNewVelocityX += fFriction;
   }
@@ -83,14 +91,14 @@ void Player::Update(const orxCLOCK_INFO &_rstInfo)
     // Jump ?
     if(mbJump)
     {
-      mvVelocity.fY = -sfJump;
+      mvVelocity.fY = -mfJumpVelocity;
       mePlayerState = PlayerStateJumping;
     }
   }
   else if(!mbJump && mePlayerState == PlayerStateJumping)
   {
     // stop Jump
-    mvVelocity.fY = orxMAX(mvVelocity.fY, -sfEarlyJump);
+    mvVelocity.fY = orxMAX(mvVelocity.fY, -mfEarlyJumpVelocity);
   }
 
   // Apply phyics
@@ -120,7 +128,7 @@ void Player::ApplyGravity(orxFLOAT _fDT)
 {
   if(mePlayerState != PlayerStateGrounded)
   {
-    orxVector_Set(&mvVelocity, mvVelocity.fX, orxMIN(mvVelocity.fY + sfGravity * _fDT, sfMaxFall), orxFLOAT_0);
+    orxVector_Set(&mvVelocity, mvVelocity.fX, orxMIN(mvVelocity.fY + mfGravity * _fDT, mfMaxFall), orxFLOAT_0);
   }
 
   if(mvVelocity.fY > orxFLOAT_0)

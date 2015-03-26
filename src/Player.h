@@ -39,6 +39,19 @@ private:
 	        orxU32             mu32HorizontalCollisionFlag;
 	        orxFLOAT           mfHorizontalAxis;
 
+	        // Settings
+
+	        orxFLOAT           mfAcceleration;
+	        orxFLOAT           mfMaxSpeed;
+	        orxFLOAT           mfMaxFall;
+	        orxFLOAT           mfReactivityFactor;
+	        orxFLOAT           mfFriction;
+
+	        orxFLOAT           mfGravity;
+	        orxFLOAT           mfJumpVelocity;
+	        orxFLOAT           mfEarlyJumpVelocity;
+
+
 	           void            ApplyGravity(orxFLOAT _fDT);
 	           void            CheckVerticalRays(orxFLOAT _fDT);
 	           void            CheckHorizontalRays(orxFLOAT _fDT);
