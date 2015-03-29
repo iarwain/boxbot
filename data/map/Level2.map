@@ -1,0 +1,323 @@
+[Map]
+CameraPosition = (0, -64, -5)
+CameraZoom = 1.000000
+Differential = false
+LayerNumber = 9
+ObjectNumber = 39
+
+[ScrollEd]
+EncryptSave = false
+LayerIndex = 6
+
+[SO:00000000]
+Name = Cog5
+Position = (-444, -253, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 1381.188477
+Smoothing = true
+Tiling = false
+
+[SO:00000001]
+Name = Cog2
+Position = (-278, -132, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000002]
+Name = Cog6
+Position = (497, 165, 3.33333)
+Scale = (1, 1, 1)
+Rotation = -920.776367
+Smoothing = true
+Tiling = false
+
+[SO:00000003]
+Name = Cog4
+Position = (-321, 179, 3.33333)
+Scale = (1, 1, 1)
+Rotation = -1381.188477
+Smoothing = true
+Tiling = false
+
+[SO:00000004]
+Name = Cog4
+Position = (165, -205, 3.33333)
+Scale = (1, 1, 1)
+Rotation = -1381.188477
+Smoothing = true
+Tiling = false
+
+[SO:00000005]
+Name = Cog1
+Position = (50, -187, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000007]
+Name = Cog2
+Position = (249, -122, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000008]
+Name = Cog5
+Position = (-189, 125, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 1381.188477
+Smoothing = true
+Tiling = false
+
+[SO:00000009]
+Name = Cog1
+Position = (388, 70, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000010]
+Name = Cog2
+Position = (356, 202, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000011]
+Name = Cog3
+Position = (-382, -144, 3.33333)
+Scale = (1, 1, 1)
+Rotation = -1943.123779
+Smoothing = true
+Tiling = false
+
+[SO:00000012]
+Name = Cog2
+Position = (-404, 97, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 2071.759033
+Smoothing = true
+Tiling = false
+
+[SO:00000016]
+Name = Platform2Stand
+Position = (0, 204, 3.33333)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000017]
+Name = Platform2
+Position = (288, 192, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000018]
+Name = Platform1
+Position = (0, -0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000019]
+Name = Platform1
+Position = (140, -0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000020]
+Name = Platform1
+Position = (-140, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000021]
+Name = Platform2
+Position = (432, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000022]
+Name = Platform2
+Position = (288, -128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000023]
+Name = Platform2
+Position = (288, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000024]
+Name = Platform2
+Position = (-0, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000025]
+Name = Platform2
+Position = (-432, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000026]
+Name = Platform2
+Position = (-288, -128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000028]
+Name = Player
+Position = (-0, 56, 0)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000029]
+Name = Platform2
+Position = (-288, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000030]
+Name = Platform2
+Position = (432, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000031]
+Name = Platform2
+Position = (-432, -0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000032]
+Name = Platform2
+Position = (-288, 192, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000033]
+Name = Platform2
+Position = (-288, 256, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000034]
+Name = Platform2
+Position = (288, 256, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000035]
+Name = Platform2
+Position = (0, 256, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000036]
+Name = Platform2
+Position = (144, 256, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000037]
+Name = Platform2
+Position = (-144, 256, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000038]
+Name = Platform1
+Position = (72, -128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000039]
+Name = Platform1
+Position = (-72, -128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000040]
+Name = Platform2
+Position = (-576, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000041]
+Name = Platform2
+Position = (-576, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000042]
+Name = Platform2
+Position = (576, 0, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000043]
+Name = Platform2
+Position = (576, 128, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+

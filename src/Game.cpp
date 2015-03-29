@@ -66,6 +66,29 @@ void Game::UpdateFrustum(orxVIEWPORT *_pstViewport)
     orxCamera_GetFrustum( mpstUICamera, &stFrustum);
     orxCamera_SetFrustum( mpstUICamera, fFrustumWidth, fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
   }
+
+  if(_pstViewport == GetMainViewport())
+  {
+    orxFLOAT fScreenWidth, fScreenHeight;
+    orxFLOAT fFrustumWidth, fFrustumHeight;
+    orxAABOX stFrustum;
+
+    orxDisplay_GetScreenSize(&fScreenWidth, &fScreenHeight);
+
+    orxConfig_PushSection( "MainCamera" );
+    fFrustumWidth = orxConfig_GetFloat( "FrustumWidth" );
+    fFrustumHeight = orxConfig_GetFloat( "FrustumHeight" );
+    orxConfig_PopSection();
+
+    orxFLOAT fRatio = orxMAX( fFrustumWidth / fScreenWidth, fFrustumHeight / fScreenHeight );
+    //fFrustumWidth = fScreenWidth * fRatio;
+    fFrustumHeight = fScreenHeight * fRatio;
+
+    orxCamera_GetFrustum( GetMainCamera(), &stFrustum);
+    orxCamera_SetFrustum( GetMainCamera(), fFrustumWidth, fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
+    orxCamera_SetFrustum( mpstLeftCamera, fFrustumWidth, fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
+    orxCamera_SetFrustum( mpstRightCamera, fFrustumWidth, fFrustumHeight, stFrustum.vTL.fZ, stFrustum.vBR.fZ);
+  }
 }
 
 void Game::RegisterPlayer(Player &_roPlayer)
@@ -84,22 +107,25 @@ void Game::OnStopGame()
 
 void Game::OnMapLoad()
 {
-  orxVECTOR vCameraPosition;
-  orxFLOAT fZ;
+  if(!IsEditorMode())
+  {
+	  orxVECTOR vCameraPosition;
+	  orxFLOAT fZ;
 
-  // get main camera Z
-  orxCamera_GetPosition(GetMainCamera(), &vCameraPosition);
-  fZ = vCameraPosition.fZ;
+	  // get main camera Z
+	  orxCamera_GetPosition(GetMainCamera(), &vCameraPosition);
+	  fZ = vCameraPosition.fZ;
 
-  // update left camera Z
-  orxCamera_GetPosition(mpstLeftCamera, &vCameraPosition);
-  vCameraPosition.fZ = fZ;
-  orxCamera_SetPosition(mpstLeftCamera, &vCameraPosition);
+	  // update left camera Z
+	  orxCamera_GetPosition(mpstLeftCamera, &vCameraPosition);
+	  vCameraPosition.fZ = fZ;
+	  orxCamera_SetPosition(mpstLeftCamera, &vCameraPosition);
 
-  // update right camera Z
-  orxCamera_GetPosition(mpstRightCamera, &vCameraPosition);
-  vCameraPosition.fZ = fZ;
-  orxCamera_SetPosition(mpstRightCamera, &vCameraPosition);
+	  // update right camera Z
+	  orxCamera_GetPosition(mpstRightCamera, &vCameraPosition);
+	  vCameraPosition.fZ = fZ;
+	  orxCamera_SetPosition(mpstRightCamera, &vCameraPosition);
+  }
 }
 
 void Game::Update(const orxCLOCK_INFO &_rstInfo)
@@ -142,32 +168,36 @@ orxSTATUS Game::Init()
   mbQuit = orxFALSE;
   mpoPlayer = orxNULL;
 
-  orxVIEWPORT* pstLeftViewport = orxViewport_CreateFromConfig(szConfigLeftViewport);
-  orxVIEWPORT* pstRightViewport = orxViewport_CreateFromConfig(szConfigRightViewport);
-  mpstUIViewport = orxViewport_CreateFromConfig(szConfigUIViewport);
-
-  orxVirtualGamePad::Init(mpstUIViewport);
-
-  mpstLeftCamera        = orxViewport_GetCamera(pstLeftViewport);
-  mpstRightCamera       = orxViewport_GetCamera(pstRightViewport);
-  mpstUICamera          = orxViewport_GetCamera(mpstUIViewport);
-
   mpstCameraObject      = orxObject_CreateFromConfig(szConfigCameraObject);
   // Adds camera as child
   orxCamera_SetParent(GetMainCamera(), mpstCameraObject);
-  orxCamera_SetParent(mpstLeftCamera, mpstCameraObject);
-  orxCamera_SetParent(mpstRightCamera, mpstCameraObject);
 
-  SetMapName("Level1.map");
-  LoadMap();
+  if(!IsEditorMode())
+  {
+    orxVIEWPORT* pstLeftViewport = orxViewport_CreateFromConfig(szConfigLeftViewport);
+    orxVIEWPORT* pstRightViewport = orxViewport_CreateFromConfig(szConfigRightViewport);
+    mpstUIViewport = orxViewport_CreateFromConfig(szConfigUIViewport);
+    orxVirtualGamePad::Init(mpstUIViewport);
 
-  orxObject_CreateFromConfig("GameUI");
+    mpstLeftCamera        = orxViewport_GetCamera(pstLeftViewport);
+    mpstRightCamera       = orxViewport_GetCamera(pstRightViewport);
+    mpstUICamera          = orxViewport_GetCamera(mpstUIViewport);
+    orxCamera_SetParent(mpstLeftCamera, mpstCameraObject);
+    orxCamera_SetParent(mpstRightCamera, mpstCameraObject);
 
-  orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
+    SetMapName("Level1.map");
+    LoadMap();
 
-  UpdateFrustum(mpstUIViewport);
+    orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
+
+    UpdateFrustum(GetMainViewport());
+    UpdateFrustum(mpstUIViewport);
+
+    orxObject_CreateFromConfig("GameUI");
 
   // Done!
+  }
+
   return eResult;
 }
 
