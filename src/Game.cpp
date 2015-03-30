@@ -110,20 +110,23 @@ void Game::OnMapLoad()
   if(!IsEditorMode())
   {
 	  orxVECTOR vCameraPosition;
-	  orxFLOAT fZ;
+	  orxFLOAT fZ, fY;
 
 	  // get main camera Z
 	  orxCamera_GetPosition(GetMainCamera(), &vCameraPosition);
 	  fZ = vCameraPosition.fZ;
+	  fY = vCameraPosition.fY;
 
 	  // update left camera Z
 	  orxCamera_GetPosition(mpstLeftCamera, &vCameraPosition);
 	  vCameraPosition.fZ = fZ;
+	  vCameraPosition.fY = fY;
 	  orxCamera_SetPosition(mpstLeftCamera, &vCameraPosition);
 
 	  // update right camera Z
 	  orxCamera_GetPosition(mpstRightCamera, &vCameraPosition);
 	  vCameraPosition.fZ = fZ;
+	  vCameraPosition.fY = fY;
 	  orxCamera_SetPosition(mpstRightCamera, &vCameraPosition);
   }
 }
@@ -185,7 +188,7 @@ orxSTATUS Game::Init()
     orxCamera_SetParent(mpstLeftCamera, mpstCameraObject);
     orxCamera_SetParent(mpstRightCamera, mpstCameraObject);
 
-    SetMapName("Level1.map");
+    SetMapName("Level2.map");
     LoadMap();
 
     orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
