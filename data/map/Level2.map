@@ -1,5 +1,5 @@
 [Map]
-CameraPosition = (0, -64, -5)
+CameraPosition = (0, 0, -5)
 CameraZoom = 1.000000
 Differential = false
 LayerNumber = 9
@@ -107,7 +107,7 @@ Tiling = false
 
 [SO:00000016]
 Name = Platform2Stand
-Position = (0, 204, 3.33333)
+Position = (0, 268, 3.33333)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -115,7 +115,7 @@ Tiling = false
 
 [SO:00000017]
 Name = Platform2
-Position = (288, 192, 2.22222)
+Position = (288, 256, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -123,7 +123,7 @@ Tiling = false
 
 [SO:00000018]
 Name = Platform1
-Position = (0, -0, 2.22222)
+Position = (0, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -131,7 +131,7 @@ Tiling = false
 
 [SO:00000019]
 Name = Platform1
-Position = (140, -0, 2.22222)
+Position = (140, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -139,7 +139,7 @@ Tiling = false
 
 [SO:00000020]
 Name = Platform1
-Position = (-140, 0, 2.22222)
+Position = (-140, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -147,7 +147,7 @@ Tiling = false
 
 [SO:00000021]
 Name = Platform2
-Position = (432, 0, 2.22222)
+Position = (432, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -155,7 +155,7 @@ Tiling = false
 
 [SO:00000022]
 Name = Platform2
-Position = (288, -128, 2.22222)
+Position = (288, -64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -163,7 +163,7 @@ Tiling = false
 
 [SO:00000023]
 Name = Platform2
-Position = (288, 128, 2.22222)
+Position = (288, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -171,7 +171,7 @@ Tiling = false
 
 [SO:00000024]
 Name = Platform2
-Position = (-0, 128, 2.22222)
+Position = (-0, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -179,7 +179,7 @@ Tiling = false
 
 [SO:00000025]
 Name = Platform2
-Position = (-432, 128, 2.22222)
+Position = (-432, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -187,7 +187,7 @@ Tiling = false
 
 [SO:00000026]
 Name = Platform2
-Position = (-288, -128, 2.22222)
+Position = (-288, -64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -195,7 +195,7 @@ Tiling = false
 
 [SO:00000028]
 Name = Player
-Position = (-0, 56, 0)
+Position = (-0, 120, 0)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -203,7 +203,7 @@ Tiling = false
 
 [SO:00000029]
 Name = Platform2
-Position = (-288, 128, 2.22222)
+Position = (-288, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -211,7 +211,7 @@ Tiling = false
 
 [SO:00000030]
 Name = Platform2
-Position = (432, 128, 2.22222)
+Position = (432, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -219,7 +219,7 @@ Tiling = false
 
 [SO:00000031]
 Name = Platform2
-Position = (-432, -0, 2.22222)
+Position = (-432, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -227,7 +227,7 @@ Tiling = false
 
 [SO:00000032]
 Name = Platform2
-Position = (-288, 192, 2.22222)
+Position = (-288, 256, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -235,7 +235,7 @@ Tiling = false
 
 [SO:00000033]
 Name = Platform2
-Position = (-288, 256, 2.22222)
+Position = (-288, 320, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -243,7 +243,7 @@ Tiling = false
 
 [SO:00000034]
 Name = Platform2
-Position = (288, 256, 2.22222)
+Position = (288, 320, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -251,7 +251,7 @@ Tiling = false
 
 [SO:00000035]
 Name = Platform2
-Position = (0, 256, 2.22222)
+Position = (0, 320, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -259,7 +259,7 @@ Tiling = false
 
 [SO:00000036]
 Name = Platform2
-Position = (144, 256, 2.22222)
+Position = (144, 320, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -267,7 +267,7 @@ Tiling = false
 
 [SO:00000037]
 Name = Platform2
-Position = (-144, 256, 2.22222)
+Position = (-144, 320, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -275,7 +275,7 @@ Tiling = false
 
 [SO:00000038]
 Name = Platform1
-Position = (72, -128, 2.22222)
+Position = (72, -64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -283,7 +283,7 @@ Tiling = false
 
 [SO:00000039]
 Name = Platform1
-Position = (-72, -128, 2.22222)
+Position = (-72, -64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -291,7 +291,7 @@ Tiling = false
 
 [SO:00000040]
 Name = Platform2
-Position = (-576, 0, 2.22222)
+Position = (-576, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -299,7 +299,7 @@ Tiling = false
 
 [SO:00000041]
 Name = Platform2
-Position = (-576, 128, 2.22222)
+Position = (-576, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -307,7 +307,7 @@ Tiling = false
 
 [SO:00000042]
 Name = Platform2
-Position = (576, 0, 2.22222)
+Position = (576, 64, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -315,7 +315,7 @@ Tiling = false
 
 [SO:00000043]
 Name = Platform2
-Position = (576, 128, 2.22222)
+Position = (576, 192, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
