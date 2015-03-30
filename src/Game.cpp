@@ -17,6 +17,7 @@ static  const orxSTRING szConfigLeftViewport            = "LeftViewport";
 static  const orxSTRING szConfigRightViewport           = "RightViewport";
 static  const orxSTRING szConfigUIViewport              = "UIViewport";
 
+static  const orxSTRING szInputScreenShot               = "ScreenShot";
 static  const orxSTRING szInputLeft                     = "Left";
 static  const orxSTRING szInputRight                    = "Right";
 static  const orxSTRING szInputJump                     = "Jump";
@@ -133,6 +134,11 @@ void Game::OnMapLoad()
 
 void Game::Update(const orxCLOCK_INFO &_rstInfo)
 {
+  if(orxInput_HasNewStatus(szInputScreenShot) && orxInput_IsActive(szInputScreenShot))
+  {
+    orxScreenshot_Capture();
+  }
+
   if(mpoPlayer != orxNULL)
   {
     if(orxInput_IsActive(szInputLeft))
