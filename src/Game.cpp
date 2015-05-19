@@ -194,7 +194,7 @@ orxSTATUS Game::Init()
     orxCamera_SetParent(mpstLeftCamera, mpstCameraObject);
     orxCamera_SetParent(mpstRightCamera, mpstCameraObject);
 
-    SetMapName("Level2.map");
+    SetMapName("Level1.map");
     LoadMap();
 
     orxEvent_AddHandler(orxEVENT_TYPE_VIEWPORT, EventHandler);
