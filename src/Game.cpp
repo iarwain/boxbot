@@ -132,6 +132,20 @@ void Game::OnMapLoad()
   }
 }
 
+void Game::CameraUpdate(const orxCLOCK_INFO &_rstInfo)
+{
+  if(mpoPlayer != orxNULL)
+  {
+    orxVECTOR vPlayerPosition;
+    orxVECTOR vCameraPosition;
+
+    mpoPlayer->GetPosition(vPlayerPosition, orxTRUE);
+    orxObject_GetWorldPosition(mpstCameraObject, &vCameraPosition);
+    vCameraPosition.fY = orxCLAMP(vPlayerPosition.fY, -90, 90); // TODO compute values at runtime
+    orxObject_SetWorldPosition(mpstCameraObject, &vCameraPosition);
+  }
+}
+
 void Game::Update(const orxCLOCK_INFO &_rstInfo)
 {
   if(orxInput_HasNewStatus(szInputScreenShot) && orxInput_IsActive(szInputScreenShot))

@@ -22,6 +22,7 @@ public:
 
 private:
 
+	void            CameraUpdate(const orxCLOCK_INFO &_rstInfo);
     void            Update(const orxCLOCK_INFO &_rstInfo);
     orxSTATUS       Init();
     orxSTATUS       Run();

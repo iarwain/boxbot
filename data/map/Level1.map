@@ -3,17 +3,17 @@ CameraPosition = (0, 0, -5)
 CameraZoom = 1.000000
 Differential = false
 LayerNumber = 9
-ObjectNumber = 27
+ObjectNumber = 47
 
 [ScrollEd]
 EncryptSave = false
-LayerIndex = 6
+LayerIndex = 4
 
 [SO:00000000]
 Name = Cog5
 Position = (-444, -253, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 1515.892212
+Rotation = 2749.310303
 Smoothing = true
 Tiling = false
 
@@ -21,7 +21,7 @@ Tiling = false
 Name = Cog2
 Position = (-278, -132, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
@@ -29,7 +29,7 @@ Tiling = false
 Name = Cog6
 Position = (497, 165, 3.33333)
 Scale = (1, 1, 1)
-Rotation = -1010.575562
+Rotation = -1832.808838
 Smoothing = true
 Tiling = false
 
@@ -37,7 +37,7 @@ Tiling = false
 Name = Cog4
 Position = (-321, 179, 3.33333)
 Scale = (1, 1, 1)
-Rotation = -1515.892212
+Rotation = -2749.310303
 Smoothing = true
 Tiling = false
 
@@ -45,15 +45,15 @@ Tiling = false
 Name = Cog4
 Position = (165, -205, 3.33333)
 Scale = (1, 1, 1)
-Rotation = -1515.892212
+Rotation = -2749.310303
 Smoothing = true
 Tiling = false
 
 [SO:00000005]
 Name = Cog1
-Position = (50, -187, 3.33333)
+Position = (50, -181, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
@@ -61,7 +61,7 @@ Tiling = false
 Name = Cog2
 Position = (249, -122, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
@@ -69,7 +69,7 @@ Tiling = false
 Name = Cog5
 Position = (-189, 125, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 1515.892212
+Rotation = 2749.310303
 Smoothing = true
 Tiling = false
 
@@ -77,7 +77,7 @@ Tiling = false
 Name = Cog1
 Position = (388, 70, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
@@ -85,7 +85,7 @@ Tiling = false
 Name = Cog2
 Position = (356, 202, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
@@ -93,7 +93,7 @@ Tiling = false
 Name = Cog3
 Position = (-382, -144, 3.33333)
 Scale = (1, 1, 1)
-Rotation = -2145.155762
+Rotation = -3995.302490
 Smoothing = true
 Tiling = false
 
@@ -101,21 +101,13 @@ Tiling = false
 Name = Cog2
 Position = (-404, 97, 3.33333)
 Scale = (1, 1, 1)
-Rotation = 2273.771484
-Smoothing = true
-Tiling = false
-
-[SO:00000016]
-Name = Platform2Stand
-Position = (0, 268, 3.33333)
-Scale = (1, 1, 1)
-Rotation = 0.000000
+Rotation = 4123.951660
 Smoothing = true
 Tiling = false
 
 [SO:00000018]
 Name = Platform1
-Position = (0, 64, 2.22222)
+Position = (0, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -123,7 +115,7 @@ Tiling = false
 
 [SO:00000019]
 Name = Platform1
-Position = (140, 64, 2.22222)
+Position = (140, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -131,7 +123,7 @@ Tiling = false
 
 [SO:00000020]
 Name = Platform1
-Position = (-140, 64, 2.22222)
+Position = (-140, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -139,7 +131,7 @@ Tiling = false
 
 [SO:00000021]
 Name = Platform2
-Position = (432, 64, 2.22222)
+Position = (432, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -147,7 +139,7 @@ Tiling = false
 
 [SO:00000022]
 Name = Platform2
-Position = (288, -64, 2.22222)
+Position = (288, -64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -155,7 +147,7 @@ Tiling = false
 
 [SO:00000024]
 Name = Platform2
-Position = (-0, 192, 2.22222)
+Position = (-0, 192, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -163,7 +155,7 @@ Tiling = false
 
 [SO:00000026]
 Name = Platform2
-Position = (-288, -64, 2.22222)
+Position = (-288, -64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -171,7 +163,7 @@ Tiling = false
 
 [SO:00000028]
 Name = Player
-Position = (-0, 120, 0)
+Position = (-70, -143, 0)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -179,7 +171,7 @@ Tiling = false
 
 [SO:00000031]
 Name = Platform2
-Position = (-432, 64, 2.22222)
+Position = (-432, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -187,7 +179,7 @@ Tiling = false
 
 [SO:00000038]
 Name = Platform1
-Position = (72, -64, 2.22222)
+Position = (72, -64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -195,7 +187,7 @@ Tiling = false
 
 [SO:00000039]
 Name = Platform1
-Position = (-72, -64, 2.22222)
+Position = (-72, -64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -203,7 +195,7 @@ Tiling = false
 
 [SO:00000040]
 Name = Platform2
-Position = (-576, 64, 2.22222)
+Position = (-576, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
@@ -211,15 +203,183 @@ Tiling = false
 
 [SO:00000042]
 Name = Platform2
-Position = (576, 64, 2.22222)
+Position = (576, 64, 1.11111)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
 Tiling = false
 
-[SO:00000043]
-Name = PlatformGround
-Position = (0, 396, 2.22222)
+[SO:00000045]
+Name = PlatformFloor2
+Position = (32, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000047]
+Name = PlatformFloor2
+Position = (-32, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000048]
+Name = PlatformFloor2
+Position = (-96, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000049]
+Name = PlatformFloor2
+Position = (96, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000050]
+Name = PlatformFloor1
+Position = (-160, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000051]
+Name = PlatformFloor3
+Position = (160, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000052]
+Name = PlatformFloor1
+Position = (-492, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000055]
+Name = PlatformFloor3
+Position = (-300, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000056]
+Name = PlatformFloor3
+Position = (492, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000057]
+Name = PlatformFloor6
+Position = (428, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000058]
+Name = PlatformFloor6
+Position = (364, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000059]
+Name = PlatformFloor6
+Position = (-428, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000060]
+Name = PlatformFloor6
+Position = (-364, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000061]
+Name = PlatformFloor1
+Position = (300, 204, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000062]
+Name = PlatformFloor8
+Position = (-300, 268, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000063]
+Name = PlatformFloor8
+Position = (300, 268, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000064]
+Name = PlatformFloor7
+Position = (-300, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000065]
+Name = PlatformFloor7
+Position = (300, 332, 1.11111)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000066]
+Name = BackgroundImage
+Position = (0, 0, 4.44444)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000067]
+Name = LightRays1
+Position = (-357, -428, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000068]
+Name = LightRays2
+Position = (69, -401, 2.22222)
+Scale = (1, 1, 1)
+Rotation = 0.000000
+Smoothing = true
+Tiling = false
+
+[SO:00000069]
+Name = LightRays3
+Position = (391, -403, 2.22222)
 Scale = (1, 1, 1)
 Rotation = 0.000000
 Smoothing = true
