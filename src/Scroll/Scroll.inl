@@ -29,17 +29,6 @@ static const orxSTRING szParamEditor = "-editor";
 
 //! Code
 template<class G>
-G &Scroll<G>::GetInstance()
-{
-  if(!spoInstance)
-  {
-    spoInstance = new G();
-  }
-
-  return *ScrollCast<G *>(spoInstance);
-}
-
-template<class G>
 ScrollObject *Scroll<G>::CreateObject(const orxSTRING _zModelName)
 {
   // Calls base method
@@ -116,6 +105,12 @@ const orxSTRING Scroll<G>::GetEncryptionKey() const
 }
 
 template<class G>
+orxSTATUS Scroll<G>::Bootstrap() const
+{
+  return orxSTATUS_SUCCESS;
+}
+
+template<class G>
 void Scroll<G>::Execute(int argc, char **argv)
 {
 #ifndef __NO_SCROLLED__
@@ -124,19 +119,8 @@ void Scroll<G>::Execute(int argc, char **argv)
   // For all params
   for(int i = 0; !bEditor && (i < argc); i++)
   {
-    char  acParam[1024], *pc1, *pc2;
-    int   iLength, j;
-
-    // Gets a local lower case copy
-    iLength = strlen(argv[i]);
-    for(j = 0, pc1 = acParam, pc2 = argv[i]; (j < iLength) && (j < 1024); pc1++, pc2++, j++)
-    {
-      *pc1 = ((*pc2 >= 'A') && (*pc2 <= 'Z')) ? *pc2 | 0x20 : *pc2;
-    }
-    *pc1 = '\0';
-
     // Is editor switch?
-    if(!strcmp(acParam, szParamEditor))
+    if(!orxString_ICompare(argv[i], szParamEditor))
     {
       // Updates editor status
       bEditor = true;
@@ -147,7 +131,7 @@ void Scroll<G>::Execute(int argc, char **argv)
   if(bEditor)
   {
     // Executes editor
-    ScrollEd::GetInstance().Execute<G>(argc, argv);
+    ScrollEd::GetInstance().Execute(argc, argv);
   }
   else
   {

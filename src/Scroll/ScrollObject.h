@@ -22,8 +22,8 @@
  *    distribution.
  */
 
-#ifndef _ScrollObject_H_
-#define _ScrollObject_H_
+#ifndef _SCROLLOBJECT_H_
+#define _SCROLLOBJECT_H_
 
 
 //! ScrollObject class
@@ -31,6 +31,7 @@ class ScrollObject
 {
   friend class ScrollBase;
   friend class ScrollEd;
+  friend class ScrollObjectBinderBase;
   template <class O> friend class ScrollObjectBinder;
 
 public:
@@ -65,8 +66,14 @@ public:
                 orxBOOL                 IsEnabled() const;
                 void                    Enable(orxBOOL _bEnable, orxBOOL _bRecursive = orxTRUE);
 
+                orxBOOL                 IsPaused() const;
+                void                    Pause(orxBOOL _bPause, orxBOOL _bRecursive = orxTRUE);
+
                 orxVECTOR &             GetPosition(orxVECTOR &_rvPosition, orxBOOL _bWorld = orxFALSE) const;
                 void                    SetPosition(const orxVECTOR &_rvPosition, orxBOOL _bWorld = orxFALSE);
+
+                orxVECTOR &             GetSize(orxVECTOR &_rvSize) const;
+                void                    SetSize(const orxVECTOR &_rvSize);
 
                 orxVECTOR &             GetScale(orxVECTOR &_rvScale, orxBOOL _bWorld = orxFALSE) const;
                 void                    SetScale(const orxVECTOR &_rvScale, orxBOOL _bWorld = orxFALSE);
@@ -103,6 +110,9 @@ public:
                 orxFLOAT                GetLifeTime() const;
                 void                    SetLifeTime(orxFLOAT _fLifeTime);
 
+                ScrollObject *          GetOwnedChild() const;
+                ScrollObject *          GetOwnedSibling() const;
+
                 void                    PushConfigSection(orxBOOL _bPushInstanceSection = orxFALSE) const;
                 void                    PopConfigSection() const;
 
@@ -121,9 +131,10 @@ private:
   virtual       void                    OnStopGame();
   virtual       orxBOOL                 OnPauseGame(orxBOOL _bPause);
 
-  virtual       orxBOOL                 OnRender(orxRENDER_EVENT_PAYLOAD *_pstPayload);
+  virtual       orxBOOL                 OnRender(orxRENDER_EVENT_PAYLOAD &_rstPayload);
+  virtual       orxBOOL                 OnShader(orxSHADER_EVENT_PAYLOAD &_rstPayload);
 
-  virtual       orxBOOL                 OnCollide(ScrollObject *_poCollider, const orxSTRING _zPartName, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal);
+  virtual       orxBOOL                 OnCollide(ScrollObject *_poCollider, const orxSTRING _zPartName, const orxSTRING _zColliderPartName, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal);
   virtual       orxBOOL                 OnSeparate(ScrollObject *_poCollider);
 
   virtual       void                    OnNewAnim(const orxSTRING _zOldAnim, const orxSTRING _zNewAnim, orxBOOL _bCut);
@@ -190,4 +201,4 @@ inline ScrollObject::Flag operator~(ScrollObject::Flag _x1)
 
 #endif // __SCROLL_IMPL__
 
-#endif // _ScrollObject_H_
+#endif // _SCROLLOBJECT_H_

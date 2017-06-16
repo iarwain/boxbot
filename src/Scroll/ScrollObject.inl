@@ -43,29 +43,16 @@ orxBOOL ScrollObject::GetGroupID() const
 
 void ScrollObject::SetGroupID(orxU32 _u32GroupID, orxBOOL _bRecursive)
 {
-  // Updates object's group ID
-  orxObject_SetGroupID(mpstObject, _u32GroupID);
-
   // Recursive?
   if(_bRecursive)
   {
-    // For all children
-    for(orxOBJECT *pstChild = orxObject_GetOwnedChild(mpstObject);
-        pstChild;
-        pstChild = orxObject_GetOwnedSibling(pstChild))
-    {
-      ScrollObject *poChild;
-
-      // Gets its scroll object
-      poChild = (ScrollObject *)orxObject_GetUserData(pstChild);
-
-      // Valid?
-      if(poChild)
-      {
-        // Updates its group ID
-        poChild->SetGroupID(_u32GroupID, _bRecursive);
-      }
-    }
+    // Updates object's group ID
+    orxObject_SetGroupIDRecursive(mpstObject, _u32GroupID);
+  }
+  else
+  {
+    // Updates object's group ID
+    orxObject_SetGroupID(mpstObject, _u32GroupID);
   }
 }
 
@@ -77,29 +64,37 @@ orxBOOL ScrollObject::IsEnabled() const
 
 void ScrollObject::Enable(orxBOOL _bEnable, orxBOOL _bRecursive)
 {
-  // Updates its status
-  orxObject_Enable(mpstObject, _bEnable);
-
   // Recursive?
   if(_bRecursive)
   {
-    // For all children
-    for(orxOBJECT *pstChild = orxObject_GetOwnedChild(mpstObject);
-        pstChild;
-        pstChild = orxObject_GetOwnedSibling(pstChild))
-    {
-      ScrollObject *poChild;
+    // Updates its status
+    orxObject_EnableRecursive(mpstObject, _bEnable);
+  }
+  else
+  {
+    // Updates its status
+    orxObject_Enable(mpstObject, _bEnable);
+  }
+}
 
-      // Gets its scroll object
-      poChild = (ScrollObject *)orxObject_GetUserData(pstChild);
+orxBOOL ScrollObject::IsPaused() const
+{
+  // Done!
+  return orxObject_IsPaused(mpstObject);
+}
 
-      // Valid?
-      if(poChild)
-      {
-        // Updates its status
-        poChild->Enable(_bEnable, _bRecursive);
-      }
-    }
+void ScrollObject::Pause(orxBOOL _bPause, orxBOOL _bRecursive)
+{
+  // Recursive?
+  if(_bRecursive)
+  {
+    // Updates its status
+    orxObject_PauseRecursive(mpstObject, _bPause);
+  }
+  else
+  {
+    // Updates its status
+    orxObject_Pause(mpstObject, _bPause);
   }
 }
 
@@ -134,6 +129,21 @@ void ScrollObject::SetPosition(const orxVECTOR &_rvPosition, orxBOOL _bWorld)
     // Updates its position
     orxObject_SetWorldPosition(mpstObject, &_rvPosition);
   }
+}
+
+orxVECTOR &ScrollObject::GetSize(orxVECTOR &_rvSize) const
+{
+  // Updates result
+  orxObject_GetSize(mpstObject, &_rvSize);
+
+  // Done!
+  return _rvSize;
+}
+
+void ScrollObject::SetSize(const orxVECTOR &_rvSize)
+{
+  // Updates its Size
+  orxObject_SetSize(mpstObject, &_rvSize);
 }
 
 orxVECTOR &ScrollObject::GetScale(orxVECTOR &_rvScale, orxBOOL _bWorld) const
@@ -248,29 +258,16 @@ orxCOLOR &ScrollObject::GetColor(orxCOLOR &_rstColor) const
 
 void ScrollObject::SetColor(const orxCOLOR &_rstColor, orxBOOL _bRecursive)
 {
-  // Updates object's color
-  orxObject_SetColor(mpstObject, &_rstColor);
-
   // Recursive?
   if(_bRecursive)
   {
-    // For all children
-    for(orxOBJECT *pstChild = orxObject_GetOwnedChild(mpstObject);
-        pstChild;
-        pstChild = orxObject_GetOwnedSibling(pstChild))
-    {
-      ScrollObject *poChild;
-
-      // Gets its scroll object
-      poChild = (ScrollObject *)orxObject_GetUserData(pstChild);
-
-      // Valid?
-      if(poChild)
-      {
-        // Updates its color
-        poChild->SetColor(_rstColor, _bRecursive);
-      }
-    }
+    // Updates object's color
+    orxObject_SetColorRecursive(mpstObject, &_rstColor);
+  }
+  else
+  {
+    // Updates object's color
+    orxObject_SetColor(mpstObject, &_rstColor);
   }
 }
 
@@ -564,6 +561,44 @@ void ScrollObject::PushConfigSection(orxBOOL _bPushInstanceSection) const
   orxConfig_PushSection(_bPushInstanceSection ? macName : mzModelName);
 }
 
+ScrollObject *ScrollObject::GetOwnedChild() const
+{
+  orxOBJECT    *pstChild;
+  ScrollObject *poResult = orxNULL;
+
+  // Gets child
+  pstChild = orxObject_GetOwnedChild(mpstObject);
+
+  // Valid?
+  if(pstChild)
+  {
+    // Updates result
+    poResult = (ScrollObject *)orxObject_GetUserData(pstChild);
+  }
+
+  // Done!
+  return poResult;
+}
+
+ScrollObject *ScrollObject::GetOwnedSibling() const
+{
+  orxOBJECT    *pstSibling;
+  ScrollObject *poResult = orxNULL;
+
+  // Gets sibling
+  pstSibling = orxObject_GetOwnedSibling(mpstObject);
+
+  // Valid?
+  if(pstSibling)
+  {
+    // Updates result
+    poResult = (ScrollObject *)orxObject_GetUserData(pstSibling);
+  }
+
+  // Done!
+  return poResult;
+}
+
 void ScrollObject::PopConfigSection() const
 {
   // Pops config section
@@ -651,7 +686,7 @@ void ScrollObject::Update(const orxCLOCK_INFO &_rstInfo)
 {
 }
 
-orxBOOL ScrollObject::OnCollide(ScrollObject *_poCollider, const orxSTRING _zPartName, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
+orxBOOL ScrollObject::OnCollide(ScrollObject *_poCollider, const orxSTRING _zPartName, const orxSTRING _zColliderPartName, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
   return orxTRUE;
 }
@@ -682,7 +717,12 @@ orxBOOL ScrollObject::OnPauseGame(orxBOOL _bPause)
   return orxTRUE;
 }
 
-orxBOOL ScrollObject::OnRender(orxRENDER_EVENT_PAYLOAD *_pstPayload)
+orxBOOL ScrollObject::OnRender(orxRENDER_EVENT_PAYLOAD &_rstPayload)
+{
+  return orxTRUE;
+}
+
+orxBOOL ScrollObject::OnShader(orxSHADER_EVENT_PAYLOAD &_rstPayload)
 {
   return orxTRUE;
 }

@@ -92,10 +92,24 @@ private:
   virtual       void            OnPauseGame(orxBOOL _bPause)                {}
 
   virtual const orxSTRING       GetEncryptionKey() const;
+  virtual       orxSTATUS       Bootstrap() const;
 
 
 //! Variables
 };
+
+
+//! Templated code
+template<class G>
+G &Scroll<G>::GetInstance()
+{
+  if(!spoInstance)
+  {
+    spoInstance = new G();
+  }
+
+  return *ScrollCast<G *>(spoInstance);
+}
 
 
 #ifdef __SCROLL_IMPL__
