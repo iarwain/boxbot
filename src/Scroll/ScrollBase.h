@@ -34,6 +34,7 @@
 
 #include "ScrollObject.h"
 
+#include <new>
 
 //! Template helpers
 template<class T, class U>
